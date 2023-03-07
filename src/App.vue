@@ -8,7 +8,13 @@ const sound = new Howl({
   html5: true,
 });
 
-sound.play();
+const playMusic = () => {
+  sound.play();
+};
+
+/* const pauseMusic = () => {
+  sound.
+}; */
 </script>
 
 <template>
@@ -16,5 +22,11 @@ sound.play();
     <ion-content class="ion-padding">
       <h1>holi</h1>
     </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title>Footer Toolbar</ion-title>
+      </ion-toolbar>
+    </ion-footer>
   </ion-app>
 </template>

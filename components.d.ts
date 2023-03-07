@@ -12,6 +12,9 @@ declare module '@vue/runtime-core' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IonApp: typeof import('@ionic/vue')['IonApp']
     IonContent: typeof import('@ionic/vue')['IonContent']
+    IonFooter: typeof import('@ionic/vue')['IonFooter']
+    IonTitle: typeof import('@ionic/vue')['IonTitle']
+    IonToolbar: typeof import('@ionic/vue')['IonToolbar']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
