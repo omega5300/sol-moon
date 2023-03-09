@@ -11,6 +11,7 @@ export default defineConfig({
     vue(),
     Components({
       extensions: ['vue'],
+      dirs: ['src/components'],
       resolvers: [IonicResolver()],
     }),
   ],

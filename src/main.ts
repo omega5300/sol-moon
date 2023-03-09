@@ -22,4 +22,7 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Global styles */
+import './style.css'
+
 createApp(App).use(IonicVue, { mode: 'md' }).mount('#app');
