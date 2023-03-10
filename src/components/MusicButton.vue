@@ -5,6 +5,7 @@
       fill="clear" 
       @click="emits('musicAction')"
       color="dark"
+      :disabled="isDisabled"
     >
       <ion-icon slot="icon-only" :icon="musicIcon" />
     </ion-button>
@@ -16,7 +17,8 @@ const emits = defineEmits<{
   (e: 'musicAction'): void
 }>()
 
-const { musicIcon } = defineProps<{
-  musicIcon: string
+const { musicIcon, isDisabled } = defineProps<{
+  musicIcon: string,
+  isDisabled: boolean
 }>()
 </script>

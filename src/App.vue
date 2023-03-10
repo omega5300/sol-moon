@@ -20,6 +20,9 @@ import { Track, trackList } from './data/audioData'
 // internal
 let player: Howl | null = null;
 
+// static
+const totalTracks = trackList.length - 1
+
 // states
 const lastEmittedValue = ref(0)
 
@@ -78,15 +81,11 @@ const togglePlayer = (pause: boolean) => {
 }
 
 const nextTrack = () => {
-  trackPosition.value !== trackList.length - 1
-    ? playMusic(trackList[trackPosition.value + 1])
-    : playMusic(trackList[0])
+  playMusic(trackList[trackPosition.value + 1])
 }
 
 const prevTrack = () => {
-  trackPosition.value > 0
-    ? playMusic(trackList[trackPosition.value - 1])
-    : playMusic(trackList[trackList.length - 1])
+  playMusic(trackList[trackPosition.value - 1])
 }
 
 const seekTrack = () => {
@@ -120,7 +119,7 @@ const updateProgress = () => {
         <ion-img class="cover" src="cover.jpg" alt="album cover" />
 
         <ion-card-title class="ion-text-center ion-padding">
-          {{ activeTrack?.title || 'no title play' }}
+          {{ trackPosition + 1 }}. {{ activeTrack?.title || 'no title play' }}
         </ion-card-title>
       </ion-card>
 
@@ -147,11 +146,11 @@ const updateProgress = () => {
               </ion-text>
             </ion-range>
           </ion-col>
-          <music-button :music-icon="playSkipBackOutline" @music-action="prevTrack" />
-          <music-button v-if="!isPlaying" :music-icon="playOutline" @music-action="togglePlayer(false)" />
-          <music-button v-if="isPlaying" :music-icon="pauseOutline" @music-action="togglePlayer(true)" />
-          <music-button :music-icon="stopOutline" @music-action="stopPlayer" />
-          <music-button :music-icon="playSkipForwardOutline" @music-action="nextTrack" />
+          <music-button :isDisabled="trackPosition === 0" :music-icon="playSkipBackOutline" @music-action="prevTrack" />
+          <music-button :isDisabled="false" v-if="!isPlaying" :music-icon="playOutline" @music-action="togglePlayer(false)" />
+          <music-button :isDisabled="false" v-if="isPlaying" :music-icon="pauseOutline" @music-action="togglePlayer(true)" />
+          <music-button :isDisabled="false" :music-icon="stopOutline" @music-action="stopPlayer" />
+          <music-button :isDisabled="trackPosition === totalTracks" :music-icon="playSkipForwardOutline" @music-action="nextTrack" />
         </ion-row>
       </ion-grid>
     </ion-footer>
