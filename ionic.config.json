@@ -1,0 +1,8 @@
+{
+  "name": "sol-moon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "beb7e578"
+}

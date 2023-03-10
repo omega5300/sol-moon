@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-import { IonRange } from '@ionic/vue'
-
 import {
   playOutline,
   pauseOutline,
   stopOutline,
   playSkipBackOutline,
   playSkipForwardOutline,
+  informationCircleOutline,
 } from 'ionicons/icons'
 
-import { Howl, Howler } from 'howler'
+import { Howl } from 'howler'
 
 import { timeConvert } from './data/getTime'
 
@@ -21,7 +20,12 @@ import { Track, trackList } from './data/audioData'
 let player: Howl | null = null;
 
 // static
-const totalTracks = trackList.length - 1
+const alertButtons = ['OK']
+const totalTracks: number = trackList.length - 1
+const info: string = `
+  recopilatorio producido por mixtreria. \n\n\n
+  app desarrollado por omega5300.
+`
 
 // states
 const lastEmittedValue = ref(0)
@@ -110,11 +114,27 @@ const updateProgress = () => {
   <ion-app>
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button id="about-app">
+            <ion-icon 
+              slot="icon-only" 
+              :icon="informationCircleOutline" 
+            />
+          </ion-button>
+        </ion-buttons>
         <ion-title>Sol, moon</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
+      <ion-alert 
+        trigger="about-app"
+        header="sol, moon album"
+        sub-header="mixtreria album"
+        :message="info"
+        :buttons="alertButtons"
+      />
+
       <ion-card>
         <ion-img class="cover" src="cover.jpg" alt="album cover" />
 
@@ -137,7 +157,8 @@ const updateProgress = () => {
         <ion-row>
           <ion-col size="12">
             <ion-range aria-label="counter" v-model="progressBar" :max="100" color="dark" @ion-change="onIonChange"
-              @ion-knob-move-start="seekTrack" @ion-knob-move-end="seekTrack">
+              @ion-knob-move-start="seekTrack" @ion-knob-move-end="seekTrack"
+            >
               <ion-text slot="start" color="secondary">
                 {{ timeConvert(player?.seek() as number) }}
               </ion-text>
