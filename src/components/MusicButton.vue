@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 const emits = defineEmits<{
-  (e: 'musicAction', id: any): void
+  (e: 'musicAction'): void
 }>()
 
 const { musicIcon } = defineProps<{

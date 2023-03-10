@@ -57,7 +57,7 @@ export const trackList: Track[] = [
   {
 
     url: 'https://www.bensound.com/bensound-music/bensound-dance.mp3',
-    title: 'Love',
+    title: 'Dance',
 
   },
 
